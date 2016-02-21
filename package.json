@@ -1,0 +1,21 @@
+{
+  "name": "TodoMVC-Example",
+  "description": "Testing out JS/HTTP API technologies",
+  "author": "Nicolas Hinderling <nicolas.hinderling@gmail.com>",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^4.4.6",
+    "pg-hstore": "^2.3.2",
+    "restify": "^4.0.4",
+    "sequelize": "^3.19.3"
+  },
+  "devDependencies": {
+    "dredd": "^1.0.4",
+    "jslint": "^0.9.6"
+  }
+}
