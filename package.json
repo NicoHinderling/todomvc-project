@@ -1,5 +1,5 @@
 {
-  "name": "TodoMVC-Example",
+  "name": "Todomvc-project",
   "description": "Testing out JS/HTTP API technologies",
   "author": "Nicolas Hinderling <nicolas.hinderling@gmail.com>",
   "version": "0.0.1",
@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "pg": "^4.4.6",
     "pg-hstore": "^2.3.2",
     "restify": "^4.0.4",
@@ -23,7 +24,7 @@
     "jslint": "^0.9.6"
   },
   "scripts": {
-    "start": "node lApp.js",
-    "test": "dredd --language=nodejs --server='node localApp.js' todos.apib http://localhost:8080"
+    "start": "node app.js",
+    "test": "node -r dotenv/config testing/dredd.js && dredd --language=nodejs --server='node app.js' todos.apib http://localhost:8080"
   }
 }

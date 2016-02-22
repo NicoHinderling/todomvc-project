@@ -1,10 +1,6 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('mvctodo', 'postgres', 'nicopostgres', {
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres'
-});
+var sequelize = new Sequelize(process.env.DB_URL)
 
 var models = [
     'Todo',
