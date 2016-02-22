@@ -1,13 +1,11 @@
-"use strict";
+'use strict';
 
-var restify = require('restify');
-var Sequelize = require('sequelize');
+var restify = require('restify')
+  , Sequelize = require('sequelize');
+  // ,
 
-var sequelize = new Sequelize('mvctodo', 'postgres', 'nicopostgres', {
-    host: "localhost",
-    port: 5432,
-    dialect: 'postgres'
-});
+var sequelize = new Sequelize('postgres://ugvhonfmauvoqk:DPydqMlzSFIQTgB_oT4t5qKG6B@ec2-54-227-245-197.compute-1.amazonaws.com:5432/de63t2vi3da67c', {
+})
 
 var todoentries = sequelize.define('todoentries', {
     title: {
@@ -32,7 +30,7 @@ function CreateTodo(req, res, next) {
             .save()
             .then(function (test) {
                 res.status(201);
-                res.charSet("utf-8");
+                res.charSet('utf-8');
                 res.json(test.dataValues);
             });
     });
@@ -42,7 +40,7 @@ function CreateTodo(req, res, next) {
 function ListTodos(req, res, next) {
     todoentries.findAll()
         .then(function (rows) {
-            res.charSet("utf-8");
+            res.charSet('utf-8');
             res.json(rows);
         });
     next();
@@ -62,7 +60,7 @@ function GetTodo(req, res, next) {
             id: req.params.id,
         }
     }).then(function (rows) {
-        res.charSet("utf-8");
+        res.charSet('utf-8');
         res.json(rows[0]);
     });
     next();
@@ -77,7 +75,7 @@ function UpdateTodo(req, res, next) {       //STILL NEEDS TO UPDATE
                 }
             })
                 .then(function (values) {
-                    res.charSet("utf-8");
+                    res.charSet('utf-8');
                     res.send(values[0]);
                 });
         });
