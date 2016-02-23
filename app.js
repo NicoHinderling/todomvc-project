@@ -1,10 +1,10 @@
 'use strict';
 
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-var Todo = require('./models').Todo;
-var server = require('./routes')(server);
+const server = require('./routes')(server);
 
-server.listen(process.env.PORT || 8080, function () {
+server.listen(process.env.PORT || 8080, () => {
     console.log('%s listening at %s', server.name, server.url);
 });

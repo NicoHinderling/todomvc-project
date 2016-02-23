@@ -1,3 +1,3 @@
-var Todo = require('../models').Todo;
+var Todo = require('../models/todo')(Todo);
 
 Todo.sync({ force: true });
