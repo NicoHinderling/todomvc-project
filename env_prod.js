@@ -1,0 +1,1 @@
+process.env['DATABASE_URL'] = 'postgres://ugvhonfmauvoqk:DPydqMlzSFIQTgB_oT4t5qKG6B@ec2-54-227-245-197.compute-1.amazonaws.com:5432/de63t2vi3da67c';

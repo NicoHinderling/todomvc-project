@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
     var Sequelize = require('sequelize');
-    var sequelize = new Sequelize(process.env.DB_URL)
+    var sequelize = new Sequelize(process.env.DATABASE_URL)
     
-    return sequelize.define('todoentries', {
+    return sequelize.define('Todo', {
         title: {
             type: Sequelize.STRING,
             unique: false
@@ -10,10 +10,5 @@ module.exports = (sequelize, DataTypes) => {
         completed: {
             type: Sequelize.BOOLEAN
         }
-    },
-    {
-        createdAt: false,
-        updatedAt: false,
-        freezeTableName: true
     });
 };
