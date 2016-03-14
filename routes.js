@@ -1,10 +1,14 @@
 var Todo = require('./models/todo')(Todo);
 
 module.exports = (server) => {
-    //Test 1: Create a Todo
+
     function errorMessage(testName, error) {
         console.log("There is an error with " + testName + " : " + error);
-    } 
+    }
+    function objectNotFound(res, id){
+        res.send('object with id ' + id + ' does not exist.');
+    }
+    //Test 1: Create a Todo
     server.post('/todos', async (req, res, next) => {
         try {
             const listObject = await Todo.create({
@@ -48,7 +52,7 @@ module.exports = (server) => {
         try {
             const todo = await Todo.findById(req.params.id);
             if (todo == null) {
-                res.send('object with this id does not exist.');
+                objectNotFound(res, req.params.id);
             } else {
                 res.send(todo);
             }
@@ -62,7 +66,7 @@ module.exports = (server) => {
         try {
             const todo = await Todo.findById(req.params.id);
             if (todo == null) {
-                res.send('object with this id does not exist.');
+                objectNotFound(res, req.params.id);
             } else {
                 todo.completed = true;
                 todo.save().then((listItemObject) => { 
@@ -87,7 +91,7 @@ module.exports = (server) => {
                 const val = Todo.destroy({ where: { id: req.params.id } });
                 res.send(204);
             } else {
-                throw "ID couldn't be found";
+                objectNotFound(res, req.params.id);
             }
         } catch (err) {
             errorMessage('Test 5 (del/todos/:id)', err);
