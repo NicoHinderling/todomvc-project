@@ -1,14 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-    var Sequelize = require('sequelize');
-    var sequelize = new Sequelize(process.env.DATABASE_URL)
-    
-    return sequelize.define('Todo', {
-        title: {
-            type: Sequelize.STRING,
-            unique: false
-        },
-        completed: {
-            type: Sequelize.BOOLEAN
-        }
-    });
-};
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE_URL);
+
+module.exports = sequelize.define('todoentries', {
+  title: { type: Sequelize.STRING },
+  completed: { type: Sequelize.BOOLEAN },
+});

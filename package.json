@@ -18,8 +18,12 @@
     "sequelize": "^3.19.3"
   },
   "devDependencies": {
+    "babel-eslint": "^6.0.0-beta.6",
     "dredd": "^1.0.4",
-    "jslint": "^0.9.6"
+    "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.3",
+    "sequelize-cli": "^2.3.1"
   },
   "scripts": {
     "start": "./node_modules/.bin/babel-node app.js",
