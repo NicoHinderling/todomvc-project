@@ -1,15 +1,16 @@
-const Todo = require('./models/todo');
+import Todo from './models/todo';
 
-module.exports = (server) => {
-  function todoNullCheck(todo, res, id) {
-    let a = true;
-    if (todo === null) {
-      console.log(id);
-      res.send(`Issue with ${id}.`);
-      a = false;
+export default (server) => {
+  server.use(async (req, res, next) => {
+    if (req.params.id) {
+      req.todo = await Todo.findById(req.params.id);
+      if (req.todo === null) {
+        res.send(`Unable to find a todo with id: ${req.params.id}`);
+        return; // I did this so next() isn't called. Is there a better way syntax-wise to do this?
+      }
     }
-    return a;
-  }
+    next();
+  });
 
   // Test 1: Create a Todo
   server.post('/todos', async (req, res) => {
@@ -29,35 +30,26 @@ module.exports = (server) => {
 
   // Test 3: Archive complete Todos
   server.del('/todos', async (req, res) => {
-    await Todo.destroy({ where: { completed: true } });
+    Todo.archiveCompleted();
     res.send(204);
   });
 
   // Test 4: Get a Todo
   server.get('/todos/:id', async (req, res) => {
-    const todo = await Todo.findById(req.params.id);
-    if (todoNullCheck(todo, res, req.params.id)) {
-      res.send(todo);
-    }
+    res.send(req.todo);
   });
 
   // Test 5: Update a Todo
   server.put('/todos/:id', async (req, res) => {
-    const todo = await Todo.findById(req.params.id);
-    if (todoNullCheck(todo, res, req.params.id)) {
-      todo.completed = true;
-      todo.save();
-      res.send(todo);
-    }
+    req.todo.completed = true;
+    req.todo.save();
+    res.send(req.todo);
   });
 
   // Test 6: Delete a Todo
   server.del('/todos/:id', async (req, res) => {
-    const todo = await Todo.findById(req.params.id);
-    if (todoNullCheck(todo, res, req.params.id)) {
-      Todo.destroy({ where: { id: req.params.id } });
-      res.send(204);
-    }
+    Todo.destroy({ where: { id: req.params.id } });
+    res.send(204);
   });
 
   return server;

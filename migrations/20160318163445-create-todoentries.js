@@ -1,7 +1,8 @@
 'use strict';
+
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('todoentries', {
+    return queryInterface.createTable('todos', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,7 +25,8 @@ module.exports = {
       }
     });
   },
+
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('todoentries');
+    return queryInterface.dropTable('todos');
   }
 };
