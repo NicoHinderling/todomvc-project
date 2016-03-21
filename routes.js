@@ -30,7 +30,7 @@ export default (server) => {
 
   // Test 3: Archive complete Todos
   server.del('/todos', async (req, res) => {
-    Todo.archiveCompleted();
+    await Todo.archiveCompleted();
     res.send(204);
   });
 
@@ -42,13 +42,13 @@ export default (server) => {
   // Test 5: Update a Todo
   server.put('/todos/:id', async (req, res) => {
     req.todo.completed = true;
-    req.todo.save();
+    await req.todo.save();
     res.send(req.todo);
   });
 
   // Test 6: Delete a Todo
   server.del('/todos/:id', async (req, res) => {
-    req.todo.destroy();
+    await req.todo.destroy();
     res.send(204);
   });
 
