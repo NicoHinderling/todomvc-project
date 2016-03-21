@@ -1,0 +1,1 @@
+process.env['DATABASE_URL'] = 'postgres://postgres:nicopostgres@localhost:5432/mvctodo';

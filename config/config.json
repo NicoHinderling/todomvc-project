@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "nicopostgres",
+    "database": "mvctodo",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "nicopostgres",
+    "database": "mvctodo",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+
