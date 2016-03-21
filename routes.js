@@ -6,7 +6,7 @@ export default (server) => {
       req.todo = await Todo.findById(req.params.id);
       if (req.todo === null) {
         res.send(`Unable to find a todo with id: ${req.params.id}`);
-        return; // I did this so next() isn't called. Is there a better way syntax-wise to do this?
+        return;
       }
     }
     next();
@@ -24,8 +24,8 @@ export default (server) => {
 
   // Test 2: List all Todos
   server.get('/todos', async (req, res) => {
-    const todo = await Todo.findAll();
-    res.send(todo);
+    const todos = await Todo.findAll();
+    res.send(todos);
   });
 
   // Test 3: Archive complete Todos
@@ -48,7 +48,7 @@ export default (server) => {
 
   // Test 6: Delete a Todo
   server.del('/todos/:id', async (req, res) => {
-    Todo.destroy({ where: { id: req.params.id } });
+    req.todo.destroy();
     res.send(204);
   });
 

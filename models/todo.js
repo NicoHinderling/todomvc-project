@@ -6,8 +6,8 @@ const Todo = sequelize.define('todos', {
   completed: { type: Sequelize.BOOLEAN },
 }, {
   classMethods: {
-    archiveCompleted: async () => {
-      await Todo.destroy({ where: { completed: true } });
+    archiveCompleted: () => {
+      Todo.destroy({ where: { completed: true } });
     },
   },
 });
